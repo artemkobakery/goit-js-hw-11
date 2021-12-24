@@ -1,4 +1,6 @@
 .search-form {
+  position: sticky;
+  top: 0;
   width: 100%;
   background-color: #fff;
   display: flex;
@@ -7,6 +9,7 @@
   column-gap: 2rem;
   padding: 1rem 0;
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.05);
+  z-index: 10;
 
   &__input {
     border: none;
