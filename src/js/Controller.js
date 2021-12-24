@@ -8,6 +8,7 @@ class Controller {
   }
 
   onFormSubmitHandler(query) {
+    GalleryView.renderSpinner();
     Model.fetchData(query).then(data => {
       console.log(data);
       GalleryView.render(data);

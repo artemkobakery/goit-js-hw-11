@@ -23,6 +23,14 @@ class GalleryView {
     this.#messageTypes[type](message);
   }
 
+  renderSpinner() {
+    this.#gallery.innerHTML = `
+    <div class="spinner">
+      <i class="fas fa-spinner"></i>
+    </div>
+    `;
+  }
+
   #generateMarkup(data) {
     return data.hits
       .map(el => {
