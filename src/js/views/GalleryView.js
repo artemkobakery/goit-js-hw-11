@@ -1,10 +1,26 @@
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 class GalleryView {
   #gallery = document.querySelector('.gallery');
+  #messageTypes = {
+    success: Notify.success,
+    error: Notify.failure,
+  };
 
   render(data) {
+    if (data.hits.length === 0) {
+      this.renderMessage('Nothing to show', 'error');
+      return;
+    }
+
     const markup = this.#generateMarkup(data);
     this.#gallery.innerHTML = '';
     this.#gallery.insertAdjacentHTML('afterbegin', markup);
+    this.renderMessage(`Found ${data.total.toString()} images`, 'success');
+  }
+
+  renderMessage(message, type) {
+    this.#messageTypes[type](message);
   }
 
   #generateMarkup(data) {
