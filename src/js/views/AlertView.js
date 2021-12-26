@@ -6,6 +6,7 @@ class AlertView {
     success: Notify.success,
     error: Notify.failure,
     info: Notify.info,
+    warning: Notify.warning,
   };
 
   renderMessage(message, type) {

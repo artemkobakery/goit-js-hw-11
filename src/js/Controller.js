@@ -11,6 +11,11 @@ class Controller {
   }
 
   onFormSubmitHandler(query) {
+    if (query === '') {
+      AlertView.renderMessage('Please enter a valid search query', 'warning');
+      return;
+    }
+
     GalleryView.renderSpinner();
     Model.resetPage();
     Model.query = query;
