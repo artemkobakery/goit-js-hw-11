@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 class Model {
   #state = {
     query: '',
@@ -6,18 +8,19 @@ class Model {
     perPage: 40,
   };
 
+  #BASE_URL = 'https://pixabay.com/api/';
   #key = '12270561-313095db349b3989d6b7a9d44';
 
   async fetchData() {
-    const req = await fetch(
-      `https://pixabay.com/api/?key=${this.#key}&q=${this.#state.query}&page=${
-        this.#state.currentPage
-      }&per_page=${this.#state.perPage}&image_type=photo&orientation=horizontal&safesearch=true
-      `,
-    );
-    const res = await req.json();
-    this.#state.data = res;
-    this.incrementPage();
+    const { data } = await axios.get(`${this.#BASE_URL}?key=${this.#key}&q=${
+      this.#state.query
+    }&page=${this.#state.currentPage}&per_page=${
+      this.#state.perPage
+    }&image_type=photo&orientation=horizontal&safesearch=true
+    `);
+
+    this.#state.data = data;
+    this.#incrementPage();
     return this.#state.data;
   }
 
@@ -29,7 +32,7 @@ class Model {
     this.#state.query = query;
   }
 
-  incrementPage() {
+  #incrementPage() {
     this.#state.currentPage += 1;
   }
 

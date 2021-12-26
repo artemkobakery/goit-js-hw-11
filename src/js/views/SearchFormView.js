@@ -1,7 +1,6 @@
 class SearchFormView {
   #searchForm = document.querySelector('.search-form');
   #searchInput = document.querySelector('.search-form__input');
-  #submitBtn = document.querySelector('.search-form__btn-submit');
 
   getQuery() {
     return this.#searchInput.value;
