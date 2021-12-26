@@ -27,7 +27,10 @@ class Controller {
       AlertView.renderMessage(`Hooray! We found ${data.totalHits.toString()} images`, 'success');
       GalleryView.resetView();
       GalleryView.render(data);
-      PaginationView.showLoadMore();
+
+      if (!(data.hits.length < Model.resPerPage)) {
+        PaginationView.showLoadMore();
+      }
     });
   }
 

@@ -32,6 +32,10 @@ class Model {
     this.#state.query = query;
   }
 
+  get resPerPage() {
+    return this.#state.perPage;
+  }
+
   #incrementPage() {
     this.#state.currentPage += 1;
   }
