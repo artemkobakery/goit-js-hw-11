@@ -8,15 +8,12 @@ class GalleryView {
   };
 
   render(data) {
-    if (data.hits.length === 0) {
-      this.renderMessage('Nothing to show', 'error');
-      return;
-    }
-
     const markup = this.#generateMarkup(data);
+    this.#gallery.insertAdjacentHTML('beforeend', markup);
+  }
+
+  resetView() {
     this.#gallery.innerHTML = '';
-    this.#gallery.insertAdjacentHTML('afterbegin', markup);
-    this.renderMessage(`Found ${data.total.toString()} images`, 'success');
   }
 
   renderMessage(message, type) {
